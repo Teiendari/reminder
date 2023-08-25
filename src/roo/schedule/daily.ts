@@ -55,14 +55,12 @@ export const getDailyDuration = (value: Daily): Duration => {
 		case Daily.DuoBattleOfYggdrasil:
 			return { hours: 14 };
 
-		case Daily.ExtremeChallenge:
-			return { hours: 1, minutes: 30 };
-
 		case Daily.GuildExpedition:
 		case Daily.GuildFeast:
 		case Daily.WeekendBanquet:
 			return { minutes: 20 };
 
+		case Daily.ExtremeChallenge:
 		case Daily.RuneFashion:
 			return { hours: 19 };
 
@@ -80,6 +78,7 @@ export const getDailyDuration = (value: Daily): Duration => {
 export const getDailyTime = (value: Daily): ScheduleTime => {
 	switch (value) {
 		case Daily.RuneFashion:
+		case Daily.ExtremeChallenge:
 			return { hours: 5, minutes: 0 };
 
 		case Daily.DuoBattleOfYggdrasil:
@@ -93,7 +92,6 @@ export const getDailyTime = (value: Daily): ScheduleTime => {
 		case Daily.Arena:
 			return { hours: 20, minutes: 25 };
 
-		case Daily.ExtremeChallenge:
 		case Daily.GuildExpedition:
 		case Daily.TimeSpaceAbnormality:
 			return { hours: 20, minutes: 30 };

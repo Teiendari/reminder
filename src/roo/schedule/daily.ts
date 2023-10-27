@@ -1,11 +1,12 @@
 import { ScheduleTime } from '.';
 
 export enum Daily {
-	Arena,
+	DimensionDrill,
 	DuoBattleOfYggdrasil,
 	ExtremeChallenge,
 	GuildExpedition,
 	GuildFeast,
+	MoonLitArena,
 	RuneFashion,
 	TheGuildLeague,
 	ThemedParty,
@@ -20,7 +21,7 @@ export const getDailies = (date: Date): Daily[] => {
 	switch (day) {
 		case 0:
 			// sunday
-			return [Daily.DuoBattleOfYggdrasil, Daily.ThemedParty, Daily.GuildExpedition, Daily.WarOfEmperium];
+			return [Daily.DuoBattleOfYggdrasil, Daily.MoonLitArena, Daily.ThemedParty, Daily.GuildExpedition, Daily.WarOfEmperium];
 
 		case 1:
 			// monday
@@ -32,7 +33,7 @@ export const getDailies = (date: Date): Daily[] => {
 
 		case 3:
 			// wednesday
-			return [Daily.RuneFashion, Daily.GuildFeast, Daily.Arena];
+			return [Daily.RuneFashion, Daily.GuildFeast, Daily.DimensionDrill];
 
 		case 4:
 			// thursday
@@ -40,18 +41,21 @@ export const getDailies = (date: Date): Daily[] => {
 
 		case 5:
 			// friday
-			return [Daily.GuildFeast];
+			return [Daily.GuildFeast, Daily.DimensionDrill];
 
 		case 6:
 			// saturday
-			return [Daily.DuoBattleOfYggdrasil, Daily.WeekendBanquet, Daily.TimeSpaceAbnormality, Daily.TheGuildLeague];
+			return [Daily.DuoBattleOfYggdrasil, Daily.MoonLitArena, Daily.WeekendBanquet, Daily.TimeSpaceAbnormality, Daily.TheGuildLeague];
 	}
 };
 
 export const getDailyDuration = (value: Daily): Duration => {
 	switch (value) {
-		case Daily.Arena:
-			return { minutes: 35 };
+		case Daily.DimensionDrill:
+			return { minutes: 40 };
+
+		case Daily.MoonLitArena:
+			return { hours: 11, minutes: 59 };
 
 		case Daily.DuoBattleOfYggdrasil:
 			return { hours: 14 };
@@ -88,13 +92,16 @@ export const getDailyTime = (value: Daily): ScheduleTime => {
 		case Daily.DuoBattleOfYggdrasil:
 			return { hours: 10, minutes: 0 };
 
+		case Daily.MoonLitArena:
+			return { hours: 12, minutes: 0 };
+
 		case Daily.GuildFeast:
 		case Daily.ThemedParty:
 		case Daily.WeekendBanquet:
 			return { hours: 20, minutes: 0 };
 
-		case Daily.Arena:
-			return { hours: 20, minutes: 25 };
+		case Daily.DimensionDrill:
+			return { hours: 20, minutes: 30 };
 
 		case Daily.GuildExpedition:
 		case Daily.TimeSpaceAbnormality:

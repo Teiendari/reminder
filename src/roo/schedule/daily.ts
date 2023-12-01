@@ -4,8 +4,11 @@ export enum Daily {
 	DimensionDrill,
 	DuoBattleOfYggdrasil,
 	ExtremeChallenge,
+	FinalTrialOfNerdiness,
 	GuildExpedition,
 	GuildFeast,
+	GuildQuiz,
+	InitialTrialOfNerdiness,
 	MoonlitArena,
 	RuneFashion,
 	TheGuildLeague,
@@ -25,7 +28,7 @@ export const getDailies = (date: Date): Daily[] => {
 
 		case 1:
 			// monday
-			return [Daily.ExtremeChallenge, Daily.GuildFeast];
+			return [Daily.ExtremeChallenge, Daily.GuildQuiz];
 
 		case 2:
 			// tuesday
@@ -33,7 +36,7 @@ export const getDailies = (date: Date): Daily[] => {
 
 		case 3:
 			// wednesday
-			return [Daily.RuneFashion, Daily.GuildFeast, Daily.DimensionDrill];
+			return [Daily.RuneFashion, Daily.GuildQuiz, Daily.DimensionDrill];
 
 		case 4:
 			// thursday
@@ -41,11 +44,11 @@ export const getDailies = (date: Date): Daily[] => {
 
 		case 5:
 			// friday
-			return [Daily.GuildFeast, Daily.DimensionDrill];
+			return [Daily.GuildQuiz, Daily.DimensionDrill];
 
 		case 6:
 			// saturday
-			return [Daily.DuoBattleOfYggdrasil, Daily.MoonlitArena, Daily.WeekendBanquet, Daily.TimeSpaceAbnormality, Daily.TheGuildLeague];
+			return [Daily.InitialTrialOfNerdiness, Daily.DuoBattleOfYggdrasil, Daily.MoonlitArena, Daily.FinalTrialOfNerdiness, Daily.WeekendBanquet, Daily.TimeSpaceAbnormality, Daily.TheGuildLeague];
 	}
 };
 
@@ -57,6 +60,12 @@ export const getDailyDuration = (value: Daily): Duration => {
 		case Daily.MoonlitArena:
 			return { hours: 11, minutes: 59 };
 
+		case Daily.InitialTrialOfNerdiness:
+			return { hours: 13 };
+
+		case Daily.FinalTrialOfNerdiness:
+			return { minutes: 20 };
+
 		case Daily.DuoBattleOfYggdrasil:
 			return { hours: 14 };
 
@@ -65,7 +74,12 @@ export const getDailyDuration = (value: Daily): Duration => {
 		case Daily.WeekendBanquet:
 			return { minutes: 20 };
 
+		case Daily.GuildQuiz:
+			return { minutes: 15 };
+			
 		case Daily.ExtremeChallenge:
+			return { hours: 23, minutes: 59 };
+
 		case Daily.RuneFashion:
 			return { hours: 19 };
 
@@ -86,6 +100,12 @@ export const getDailyDuration = (value: Daily): Duration => {
 export const getDailyTime = (value: Daily): ScheduleTime => {
 	switch (value) {
 		case Daily.ExtremeChallenge:
+			return { hours: 0, minutes: 0 };
+
+		case Daily.FinalTrialOfNerdiness:
+			return { hours: 19, minutes: 0 };
+
+		case Daily.InitialTrialOfNerdiness:
 		case Daily.RuneFashion:
 			return { hours: 5, minutes: 0 };
 
@@ -101,8 +121,6 @@ export const getDailyTime = (value: Daily): ScheduleTime => {
 			return { hours: 20, minutes: 0 };
 
 		case Daily.DimensionDrill:
-			return { hours: 20, minutes: 30 };
-
 		case Daily.GuildExpedition:
 		case Daily.TimeSpaceAbnormality:
 			return { hours: 20, minutes: 30 };

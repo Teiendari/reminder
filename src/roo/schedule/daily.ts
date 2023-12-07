@@ -116,6 +116,7 @@ export const getDailyTime = (value: Daily): ScheduleTime => {
 			return { hours: 12, minutes: 0 };
 
 		case Daily.GuildFeast:
+		case Daily.GuildQuiz:
 		case Daily.ThemedParty:
 		case Daily.WeekendBanquet:
 			return { hours: 20, minutes: 0 };

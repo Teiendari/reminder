@@ -4,16 +4,18 @@ export enum Daily {
 	DimensionDrill,
 	DuoBattleOfYggdrasil,
 	ExtremeChallenge,
+	EmperiumOverrun,
 	FinalTrialOfNerdiness,
-	GuildExpedition,
+	PhantomHunt,
 	GuildFeast,
 	GuildQuiz,
+	GuildVault,
 	InitialTrialOfNerdiness,
 	MoonlitArena,
-	RuneFashion,
 	TheGuildLeague,
 	ThemedParty,
 	TimeSpaceAbnormality,
+	TetraRealms,
 	WarOfEmperium,
 	WeekendBanquet,
 }
@@ -24,11 +26,11 @@ export const getDailies = (date: Date): Daily[] => {
 	switch (day) {
 		case 0:
 			// sunday
-			return [Daily.DuoBattleOfYggdrasil, Daily.MoonlitArena, Daily.ThemedParty, Daily.GuildExpedition, Daily.WarOfEmperium];
+			return [Daily.DuoBattleOfYggdrasil, Daily.MoonlitArena, Daily.ThemedParty, Daily.WarOfEmperium, Daily.EmperiumOverrun];
 
 		case 1:
 			// monday
-			return [Daily.ExtremeChallenge, Daily.GuildQuiz];
+			return [Daily.ExtremeChallenge, Daily.GuildQuiz, Daily.DimensionDrill, Daily.GuildVault];
 
 		case 2:
 			// tuesday
@@ -36,19 +38,19 @@ export const getDailies = (date: Date): Daily[] => {
 
 		case 3:
 			// wednesday
-			return [Daily.RuneFashion, Daily.GuildQuiz, Daily.DimensionDrill];
+			return [Daily.GuildQuiz, Daily.DimensionDrill];
 
 		case 4:
 			// thursday
-			return [Daily.GuildFeast, Daily.GuildExpedition, Daily.TheGuildLeague];
+			return [Daily.GuildFeast, Daily.PhantomHunt, Daily.TheGuildLeague];
 
 		case 5:
 			// friday
-			return [Daily.GuildQuiz, Daily.DimensionDrill];
+			return [Daily.GuildQuiz, Daily.GuildVault];
 
 		case 6:
 			// saturday
-			return [Daily.InitialTrialOfNerdiness, Daily.DuoBattleOfYggdrasil, Daily.MoonlitArena, Daily.FinalTrialOfNerdiness, Daily.WeekendBanquet, Daily.TimeSpaceAbnormality, Daily.TheGuildLeague];
+			return [Daily.InitialTrialOfNerdiness, Daily.DuoBattleOfYggdrasil, Daily.MoonlitArena, Daily.FinalTrialOfNerdiness, Daily.WeekendBanquet, Daily.TetraRealms, Daily.TheGuildLeague];
 	}
 };
 
@@ -56,6 +58,9 @@ export const getDailyDuration = (value: Daily): Duration => {
 	switch (value) {
 		case Daily.DimensionDrill:
 			return { minutes: 40 };
+
+		case Daily.GuildVault:
+			return { hours: 2, minutes: 30 };
 
 		case Daily.MoonlitArena:
 			return { hours: 11, minutes: 59 };
@@ -69,19 +74,17 @@ export const getDailyDuration = (value: Daily): Duration => {
 		case Daily.DuoBattleOfYggdrasil:
 			return { hours: 14 };
 
-		case Daily.GuildExpedition:
+		case Daily.PhantomHunt:
 		case Daily.GuildFeast:
 		case Daily.WeekendBanquet:
 			return { minutes: 20 };
 
 		case Daily.GuildQuiz:
+		case Daily.TetraRealms:
 			return { minutes: 15 };
 			
 		case Daily.ExtremeChallenge:
 			return { hours: 23, minutes: 59 };
-
-		case Daily.RuneFashion:
-			return { hours: 19 };
 
 		case Daily.TheGuildLeague:
 			return { minutes: 25 };
@@ -93,6 +96,7 @@ export const getDailyDuration = (value: Daily): Duration => {
 			return { minutes: 13 };
 
 		case Daily.WarOfEmperium:
+		case Daily.EmperiumOverrun:
 			return { hours: 1, minutes: 10 };
 	}
 };
@@ -106,7 +110,6 @@ export const getDailyTime = (value: Daily): ScheduleTime => {
 			return { hours: 19, minutes: 0 };
 
 		case Daily.InitialTrialOfNerdiness:
-		case Daily.RuneFashion:
 			return { hours: 5, minutes: 0 };
 
 		case Daily.DuoBattleOfYggdrasil:
@@ -122,14 +125,19 @@ export const getDailyTime = (value: Daily): ScheduleTime => {
 			return { hours: 20, minutes: 0 };
 
 		case Daily.DimensionDrill:
-		case Daily.GuildExpedition:
+		case Daily.PhantomHunt:
 		case Daily.TimeSpaceAbnormality:
+		case Daily.TetraRealms:
 			return { hours: 20, minutes: 30 };
 
 		case Daily.TheGuildLeague:
 			return { hours: 20, minutes: 55 };
 
-		case Daily.WarOfEmperium:
+		case Daily.GuildVault:
 			return { hours: 21, minutes: 20 };
+
+		case Daily.WarOfEmperium:
+		case Daily.EmperiumOverrun:
+			return { hours: 20, minutes: 50 };
 	}
 };
